@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import com.google.gson.annotations.SerializedName;
 
+// Java object for incoming JSON
 public class Post {
     private int userId;
     private int id;

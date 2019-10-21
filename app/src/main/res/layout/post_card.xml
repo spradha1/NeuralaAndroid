@@ -23,10 +23,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
-            android:fontFamily="sans-serif-condensed"
+            android:fontFamily="sans-serif"
             android:text="title"
-            android:textFontWeight="200"
-            android:textSize="18sp" />
+            android:textStyle="bold"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/bodytext"
@@ -34,8 +34,9 @@
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:text="body"
+            android:fontFamily="sans-serif"
             android:textColor="@color/colorPrimaryDark"
-            android:textFontWeight="100" />
+            android:textSize="14sp" />
 
     </LinearLayout>
 

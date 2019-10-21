@@ -10,12 +10,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+// Adapter for Recycler View
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
 
+    // attributes for storing titles and bodies of all posts
     private ArrayList<String> titles;
     private ArrayList<String> bodies;
 
-    public CardAdapter (ArrayList<String> titles, ArrayList<String>  bodies) {
+    public CardAdapter (ArrayList<String> titles, ArrayList<String> bodies) {
         this.titles = titles;
         this.bodies = bodies;
     }
@@ -27,6 +29,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
         return new ViewHolder(cv);
     }
 
+    // filling the text views
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         CardView cardView = holder.cardView;
@@ -34,6 +37,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
         TextView body = cardView.findViewById(R.id.bodytext);
         title.setText(titles.get(position));
 
+        // restricting the text to 150 characters followed by an ellipsis
         String bodyText = bodies.get(position);
         if (bodyText.length() > 150)
             bodyText = bodyText.substring(0, 150);

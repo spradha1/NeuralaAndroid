@@ -22,6 +22,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class CardFragment extends Fragment {
 
+    // attributes for storing titles and bodies of all posts
     private ArrayList<String> titleList;
     private ArrayList<String> bodyList;
 
@@ -43,9 +44,11 @@ public class CardFragment extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
+        // get all posts
         JsonApi jsonApi = retrofit.create(JsonApi.class);
         Call<List<Post>> call = jsonApi.getPosts();
 
+        // asynchronous call
         call.enqueue(new Callback<List<Post>>() {
             @Override
             public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
@@ -60,6 +63,7 @@ public class CardFragment extends Fragment {
                     bodyList.add(p.getText());
                 }
 
+                // using the data for our layout
                 RecyclerView cardRecycler = getActivity().findViewById(R.id.cardFrag);
 
                 CardAdapter adapter = new CardAdapter(titleList, bodyList);
