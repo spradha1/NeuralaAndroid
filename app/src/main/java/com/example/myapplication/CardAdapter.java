@@ -8,12 +8,14 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
 
-    private String[] titles;
-    private String[] bodies;
+    private ArrayList<String> titles;
+    private ArrayList<String> bodies;
 
-    public CardAdapter (String[] titles, String[] bodies) {
+    public CardAdapter (ArrayList<String> titles, ArrayList<String>  bodies) {
         this.titles = titles;
         this.bodies = bodies;
     }
@@ -26,18 +28,22 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         CardView cardView = holder.cardView;
-        TextView title = (TextView) cardView.findViewById(R.id.titletext);
-        TextView body = (TextView) cardView.findViewById(R.id.bodytext);
-        title.setText(titles[position]);
-        body.setText(bodies[position]);
+        TextView title = cardView.findViewById(R.id.titletext);
+        TextView body = cardView.findViewById(R.id.bodytext);
+        title.setText(titles.get(position));
+
+        String bodyText = bodies.get(position);
+        if (bodyText.length() > 150)
+            bodyText = bodyText.substring(0, 150);
+        body.setText(bodyText + " ...");
     }
 
 
     @Override
     public int getItemCount () {
-        return titles.length;
+        return titles.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
